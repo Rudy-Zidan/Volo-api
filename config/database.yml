@@ -10,12 +10,12 @@
 #   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: ec2-176-34-111-152.eu-west-1.compute.amazonaws.com
   username: root
   password: eragon
-  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: volo_production
-  username: volo
-  password: <%= ENV['VOLO_DATABASE_PASSWORD'] %>
+  database: daeplke1oijc2q_production
+  username: hlaeumnhnqgeew
+  password: e4f53f646c945e88b68222d63093a066ff782cf4052e0d86b1062924e5b603cd
+  port: 5432
