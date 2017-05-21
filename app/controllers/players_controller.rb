@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
 
   def create
     player = Player.find_or_create_by({facebook_id: params[:id], name: params[:name]})
-    render json: {status: player}, status: 200
+    render json: {status: player.persisted?}, status: 200
   end
 
   def update_score
