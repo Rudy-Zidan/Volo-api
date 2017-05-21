@@ -1,6 +1,8 @@
 class Player < ApplicationRecord
-  has_many :friends
-  validates :name, :presence => true
+  validates :name, presence: true
+  validates :facebook_id, uniqueness: true
+
+  has_many  :friends
 
   def update_friends players
     friends.destroy_all
@@ -14,11 +16,11 @@ class Player < ApplicationRecord
   end
 
   def self.find_by_facebook id
-    Player.where('facebook_id = ?', id).first
+    Player.where(facebook_id: id).first
   end
 
   def find_by_facebook id
-    Player.where('facebook_id = ?', id).first
+    Player.where(facebook_id: id).first
   end
 
   def get_rank
