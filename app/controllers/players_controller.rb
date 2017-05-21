@@ -11,8 +11,9 @@ class PlayersController < ApplicationController
   def update_score
     player = Player.find_by_facebook(params[:id])
     player.update_friends(params[:friends]) if params[:friends]
-    render json: {status: true}, status: 200 if player.score <= params[:score].to_i
-    if player.update({score: params[:score]})
+    if(player.score >= params[:score] && player.update({score: player.score + params[:score]}))
+      render json: {status: true}, status: 200
+    elsif player.update({score: params[:score]})
       render json: {status: true}, status: 200
     else
       render json: {status: false}, status: 200
