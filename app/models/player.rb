@@ -4,6 +4,8 @@ class Player < ApplicationRecord
 
   has_many  :friends
 
+  has_secure_token
+
   def update_friends players
     friends.destroy_all
     players.each do |player|
