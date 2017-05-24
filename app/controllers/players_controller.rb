@@ -12,7 +12,7 @@ class PlayersController < ApplicationController
 
   def update_score
     @player.update_friends(params[:friends]) if params[:friends]
-    if(@player.score >= params[:score] && @player.update({score: @player.score + params[:score]}))
+    if(@player.score > params[:score] && @player.update({score: @player.score + params[:score]}))
       render json: {status: true}, status: 200
     elsif @player.update({score: params[:score]})
       render json: {status: true}, status: 200
