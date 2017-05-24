@@ -14,7 +14,7 @@ class Player < ApplicationRecord
   end
 
   def add_friend player
-    friends << Friend.new({friend_id: player.id})
+    friends << Friend.new({friend_id: player.id}) if player.present?
   end
 
   def self.find_by_facebook id
